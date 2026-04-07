@@ -40,15 +40,15 @@ contract BaseSlotMachine {
 
         uint256 payout = 0;
 
-        // 奖励规则
+        // rule
         if (symbols[0] == symbols[1] && symbols[1] == symbols[2]) {
             if (symbols[0] == 4) payout = 0.01 ether;      // 3💎 = 10x
             else if (symbols[0] == 3) payout = 0.005 ether; // 3 7 = 5x
-            else payout = 0.003 ether;                       // 其他3同 = 3x
+            else payout = 0.003 ether;                       // the same 3 = 3x
         } else if (symbols[0] == symbols[1] || symbols[1] == symbols[2] || symbols[0] == symbols[2]) {
-            payout = 0.0015 ether;                           // 2同 = 1.5x
+            payout = 0.0015 ether;                           // 2same = 1.5x
         } else {
-            treasuryBalance += msg.value;                    // 未中奖进入金库
+            treasuryBalance += msg.value;                    // false
         }
 
         if (payout > 0) {
